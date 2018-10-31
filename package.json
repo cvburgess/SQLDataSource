@@ -1,0 +1,58 @@
+{
+  "name": "datasource-sql",
+  "version": "0.1.0",
+  "description": "SQL DataSource for Apollo GraphQL projects",
+  "main": "index.js",
+  "scripts": {
+    "lint": "prettier '**/*.js' && eslint '**/*.js'",
+    "lint:fix": "prettier --write '**/*.js' && eslint --fix '**/*.js'",
+    "test": "jest"
+  },
+  "engines": {
+    "node": "10.6.0",
+    "npm": "6.1.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cvburgess/SQLDataSource.git"
+  },
+  "author": "Charles Burgess",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cvburgess/SQLDataSource/issues"
+  },
+  "homepage": "https://github.com/cvburgess/SQLDataSource#readme",
+  "dependencies": {
+    "apollo-server-caching": "^0.1.2",
+    "dataloader": "^1.4.0",
+    "knex-tiny-logger": "^1.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.0.1",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-node": "^7.0.1",
+    "eslint-plugin-prettier": "^3.0.0",
+    "husky": "^1.1.1",
+    "jest": "^23.6.0",
+    "lint-staged": "^7.2.0",
+    "prettier": "1.14.3"
+  },
+  "peerDependencies": {
+    "graphql": "^14.0.2",
+    "knex": "^0.15.2"
+  }
+}

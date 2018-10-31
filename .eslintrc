@@ -1,0 +1,15 @@
+{
+  "plugins": ["node", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2018
+  },
+  "env": {
+    "jest": true,
+    "node": true
+  },
+  "extends": ["eslint:recommended", "plugin:node/recommended", "plugin:prettier/recommended"],
+  "rules": {
+    "node/exports-style": ["error", "module.exports"],
+    "prettier/prettier": "error"
+  }
+}
