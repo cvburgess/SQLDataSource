@@ -54,5 +54,13 @@
   "peerDependencies": {
     "graphql": "^14.0.2",
     "knex": "^0.15.2"
-  }
+  },
+  "keywords": [
+    "apollo",
+    "apollo-server",
+    "datasource",
+    "graphql",
+    "knex",
+    "sql"
+  ]
 }
