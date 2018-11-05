@@ -152,9 +152,9 @@ All contributions are welcome!
 
 Please open an issue or pull request.
 
-[Knex](https://knexjs.org/)
-[Apollo DataSources](https://www.apollographql.com/docs/apollo-server/features/data-sources.html)
-[DataLoader](https://github.com/facebook/dataloader)
-[InMemoryLRUCache](https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-caching)
-[RESTDataSource](https://www.apollographql.com/docs/apollo-server/features/data-sources.html#REST-Data-Source)
-[knex-tiny-logger](https://github.com/khmm12/knex-tiny-logger)
+[knex]: https://knexjs.org/
+[apollo datasources]: https://www.apollographql.com/docs/apollo-server/features/data-sources.html
+[dataloader]: https://github.com/facebook/dataloader
+[inmemorylrucache]: https://github.com/apollographql/apollo-server/tree/master/packages/apollo-server-caching
+[restdatasource]: https://www.apollographql.com/docs/apollo-server/features/data-sources.html#REST-Data-Source
+[knex-tiny-logger]: https://github.com/khmm12/knex-tiny-logger
