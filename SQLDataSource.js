@@ -1,9 +1,10 @@
-const SQLCache = require("./SQLCache");
+const DataSource = require("apollo-datasource");
 const knexTinyLogger = require("knex-tiny-logger").default;
+const SQLCache = require("./SQLCache");
 
 const { DEBUG } = process.env;
 
-class SQLDataSource {
+class SQLDataSource extends DataSource {
   initialize(config) {
     if (DEBUG) knexTinyLogger(this.knex); // Add a logging utility for debugging
     this.context = config.context;
