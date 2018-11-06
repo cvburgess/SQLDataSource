@@ -1,4 +1,4 @@
-const DataSource = require("apollo-datasource");
+const { DataSource } = require("apollo-datasource");
 const knexTinyLogger = require("knex-tiny-logger").default;
 const SQLCache = require("./SQLCache");
 
