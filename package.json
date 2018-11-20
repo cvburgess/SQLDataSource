@@ -1,6 +1,6 @@
 {
   "name": "datasource-sql",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "SQL DataSource for Apollo GraphQL projects",
   "main": "index.js",
   "scripts": {
@@ -9,8 +9,8 @@
     "test": "jest"
   },
   "engines": {
-    "node": "10.6.0",
-    "npm": "6.1.0"
+    "node": ">=0.10.6",
+    "npm": ">=6.1.0"
   },
   "husky": {
     "hooks": {
