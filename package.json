@@ -9,7 +9,7 @@
     "test": "jest"
   },
   "engines": {
-    "node": ">=0.10.6",
+    "node": ">=10.6.0",
     "npm": ">=6.1.0"
   },
   "husky": {
