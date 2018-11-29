@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.4 - 28-11-2018
+
+- Fix multiple onQuery logging events [#5]
+
 ## v0.1.3 - 20-11-2018
 
 - Add support for multiple node and npm versions [#3]

@@ -4,11 +4,18 @@ const SQLCache = require("./SQLCache");
 
 const { DEBUG } = process.env;
 
+let hasLogger = false;
+
 class SQLDataSource extends DataSource {
   initialize(config) {
-    if (DEBUG) knexTinyLogger(this.knex); // Add a logging utility for debugging
     this.context = config.context;
     this.db = this.knex;
+
+    if (DEBUG && !hasLogger) {
+      hasLogger = true; // Prevent duplicate loggers
+      knexTinyLogger(this.db); // Add a logging utility for debugging
+    }
+
     this.sqlCache = new SQLCache(config.cache, this.knex);
     this.getBatched = query => this.sqlCache.getBatched(query);
     this.getCached = (query, ttl) => this.sqlCache.getCached(query, ttl);
