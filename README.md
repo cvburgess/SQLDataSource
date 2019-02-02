@@ -46,7 +46,7 @@ class MyDatabase extends SQLDataSource {
     return this.getCached(query, MINUTE);
 
     // Batch the query and cache the result for 1 minute
-    return this.getBatchedAndCached(query, MINUTE);
+    return this.getCached(query, MINUTE, true); //isBatched is set to true
   }
 }
 ```
