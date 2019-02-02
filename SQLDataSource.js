@@ -18,9 +18,7 @@ class SQLDataSource extends DataSource {
 
     this.sqlCache = new SQLCache(config.cache, this.knex);
     this.getBatched = query => this.sqlCache.getBatched(query);
-    this.getCached = (query, ttl) => this.sqlCache.getCached(query, ttl);
-    this.getBatchedAndCached = (query, ttl) =>
-      this.sqlCache.getBatchedAndCached(query, ttl);
+    this.getCached = (query, ttl, isBatched) => this.sqlCache.getCached(query, ttl, isBatched);
   }
 }
 
