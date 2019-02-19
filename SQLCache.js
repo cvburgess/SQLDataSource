@@ -10,23 +10,33 @@ class SQLCache {
     );
   }
 
+  normalizeDBResult(result) {
+    switch (this.knex.client) {
+      case "pg":
+        return result && result.rows;
+      // TODO: Test and implement remaining clients
+      case "mysql":
+      case "mysql2":
+      case "oracledb":
+      case "redshift":
+      case "sqlite3":
+      default:
+        return result;
+    }
+  }
+
+  getCacheKeyForQuery(query) {
+    const queryString = query.toString();
+    return `sqlcache:${queryString}`;
+  }
+
   getBatched(query) {
     const queryString = query.toString();
-
-    return this.loader.load(queryString)
-      .then((loaderResult) => {
-        switch (this.knex.client) {
-          case "pg":
-            return loaderResult && loaderResult.rows;
-          default:
-            return loaderResult;
-        }
-      })
-}
+    return this.loader.load(queryString).then(this.normalizeDBResult);
+  }
 
   getCached(query, ttl) {
-    const queryString = query.toString();
-    const cacheKey = `sqlcache:${queryString}`;
+    const cacheKey = this.getCacheKeyForQuery(query);
 
     return this.cache.get(cacheKey).then(entry => {
       if (entry) return Promise.resolve(entry);
@@ -38,18 +48,15 @@ class SQLCache {
   }
 
   getBatchedAndCached(query, ttl) {
-    const queryString = query.toString();
-    const cacheKey = `sqlcache:${queryString}`;
+    const cacheKey = this.getCacheKeyForQuery(query);
 
     return this.cache.get(cacheKey).then(entry => {
       if (entry) return Promise.resolve(entry);
 
-      return this.getBatched(query)
-        .then((queryResult) => {
-          if (queryResult) this.cache.set(cacheKey, queryResult, ttl);
-
-          return Promise.resolve(queryResult);
-        });
+      return this.getBatched(query).then(rows => {
+        if (rows) this.cache.set(cacheKey, rows, ttl);
+        return Promise.resolve(rows);
+      });
     });
   }
 }
