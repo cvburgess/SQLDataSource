@@ -12,7 +12,7 @@ class SQLCache {
 
   normalizeDBResult(result) {
     switch (this.knex.client) {
-      case "pg":
+      case "postgres":
         return result && result.rows;
       // TODO: Test and implement remaining clients
       case "mysql":
