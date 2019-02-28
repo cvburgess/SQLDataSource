@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.5 - 28-02-2019
+
+- Update dependencies to resolve cache TTL issue [#12]
+
 ## v0.1.4 - 28-11-2018
 
 - Fix multiple onQuery logging events [#5]
