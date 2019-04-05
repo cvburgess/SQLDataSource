@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.6 - 05-04-2019
+
+- Fix issue setting TTL on cache requests [#15]
+
 ## v0.1.5 - 28-02-2019
 
 - Update dependencies to resolve cache TTL issue [#12]
