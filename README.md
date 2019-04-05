@@ -16,7 +16,7 @@ And the peer dependencies (if you do not have them already): `npm i knex graphql
 const Knex = require("knex");
 const { SQLDataSource } = require("datasource-sql");
 
-const MINUTE = 60 * 1000;
+const MINUTE = 60;
 
 const knex = Knex({
   client: "pg",
@@ -89,10 +89,10 @@ SQLCache leverages Apollo's caching strategy to save results between requests an
 
 This method accepts two parameters:
 
-`getCached(knexQuery, ttlInMilliseconds)`
+`getCached(knexQuery, ttlInSeconds)`
 
 - `knexQuery`: <knexObject> A knex object that has not been then'd
-- `ttlInMilliseconds`: <Number> number of milliseconds to keep cached results
+- `ttlInSeconds`: <Number> number of seconds to keep cached results
 
 ### Why not both?
 
@@ -100,10 +100,10 @@ To leverage caching _*and*_ batching for a query, use the method `getCachedAndBa
 
 This method accepts the same two params as `getCached`:
 
-`getBatchedAndCached(knexQuery, ttlInMilliseconds)`
+`getBatchedAndCached(knexQuery, ttlInSeconds)`
 
 - `knexQuery`: <knexObject> A knex object that has not been then'd
-- `ttlInMilliseconds`: <Number> number of milliseconds to keep cached results
+- `ttlInSeconds`: <Number> number of seconds to keep cached results
 
 From the example in the usage section above:
 
