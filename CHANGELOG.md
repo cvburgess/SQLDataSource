@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.5 - 24-04-2019
+
+- Fix for responses from sqlite and mssql drivers [#9]
+
 ## v0.1.4 - 28-11-2018
 
 - Fix multiple onQuery logging events [#5]
