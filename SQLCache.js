@@ -44,7 +44,7 @@ class SQLCache {
     return this.cache.get(cacheKey).then(entry => {
       if (entry) return Promise.resolve(entry);
       return query.then(rows => {
-        if (rows) this.cache.set(cacheKey, rows, ttl);
+        if (rows) this.cache.set(cacheKey, rows, { ttl });
         return Promise.resolve(rows);
       });
     });
@@ -57,7 +57,7 @@ class SQLCache {
       if (entry) return Promise.resolve(entry);
 
       return this.getBatched(query).then(rows => {
-        if (rows) this.cache.set(cacheKey, rows, ttl);
+        if (rows) this.cache.set(cacheKey, rows, { ttl });
         return Promise.resolve(rows);
       });
     });
