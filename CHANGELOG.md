@@ -1,5 +1,9 @@
 # Changelog
 
+## v0.1.7 - 24-04-2019
+
+- Fix for responses from sqlite and mssql drivers [#9]
+
 ## v0.1.6 - 05-04-2019
 
 - Fix issue setting TTL on cache requests [#15]
