@@ -14,12 +14,15 @@ class SQLCache {
     switch (this.knex.client) {
       case "postgres":
         return result && result.rows;
+      case "mssql":
+        return result;
+      case "sqlite3":
+        return result;
       // TODO: Test and implement remaining clients
       case "mysql":
       case "mysql2":
       case "oracledb":
       case "redshift":
-      case "sqlite3":
       default:
         return result;
     }
