@@ -11,7 +11,7 @@ class SQLCache {
 
   getBatched(query) {
     const queryString = query.toString();
-    return this.loader.load(queryString).then(result => result && result.rows);
+    return this.loader.load(queryString).then(result => result && result.rows ? result.rows : result);
   }
 
   getCached(query, ttl) {
@@ -35,7 +35,7 @@ class SQLCache {
       if (entry) return Promise.resolve(entry);
       return this.loader
         .load(queryString)
-        .then(result => result && result.rows)
+        .then(result => result && result.rows ? result.rows : result)
         .then(rows => {
           if (rows) this.cache.set(cacheKey, rows, { ttl });
           return Promise.resolve(rows);
