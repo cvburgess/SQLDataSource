@@ -2,6 +2,10 @@
 
 This package combines the power of [Knex] with the ease of use of [Apollo DataSources].
 
+**NOTE: THIS PACKAGE HAS OFFICIAL SUPPORT FOR POSTGRESQL AND SQLITE ONLY**
+
+Other DBs will work, but they will return the default response from `knex.raw()` which may or may not be what you are expecting. I am working on support for other DBs, but if you want to open a PR, that helps!
+
 ## Getting Started
 
 ### Installation
