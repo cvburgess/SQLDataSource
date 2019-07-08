@@ -1,5 +1,12 @@
 # Changelog
 
+## v0.2.0 - 08-07-2019
+
+- Fix issues with lexical scoping [#19]
+- Deprecate this.knex in favor of this.db
+- Mark batching as experimental
+- Update docs to reflect current development status
+
 ## v0.1.7 - 24-04-2019
 
 - Fix for responses from sqlite and mssql drivers [#9]
@@ -33,3 +40,11 @@
 
 - Initial publication
 - Adds SQLCache and SQLDataSource classes
+
+- [#2] https://github.com/cvburgess/SQLDataSource/issues/2
+- [#3] https://github.com/cvburgess/SQLDataSource/issues/3
+- [#5] https://github.com/cvburgess/SQLDataSource/issues/5
+- [#12] https://github.com/cvburgess/SQLDataSource/issues/12
+- [#15] https://github.com/cvburgess/SQLDataSource/issues/15
+- [#9] https://github.com/cvburgess/SQLDataSource/issues/9
+- [#19] https://github.com/cvburgess/SQLDataSource/issues/19

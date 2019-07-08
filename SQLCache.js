@@ -4,28 +4,9 @@ const DataLoader = require("dataloader");
 class SQLCache {
   constructor(cache = new InMemoryLRUCache(), knex) {
     this.cache = cache;
-    this.knex = knex;
     this.loader = new DataLoader(rawQueries =>
       Promise.all(rawQueries.map(rawQuery => knex.raw(rawQuery)))
     );
-  }
-
-  normalizeDBResult(result) {
-    switch (this.knex.client) {
-      case "postgres":
-        return result && result.rows;
-      case "mssql":
-        return result;
-      case "sqlite3":
-        return result;
-      // TODO: Test and implement remaining clients
-      case "mysql":
-      case "mysql2":
-      case "oracledb":
-      case "redshift":
-      default:
-        return result;
-    }
   }
 
   getCacheKeyForQuery(query) {
@@ -34,8 +15,13 @@ class SQLCache {
   }
 
   getBatched(query) {
+    // eslint-disable-next-line
+    console.warn(
+      "WARNING: batching is considered unstable and returns RAW responses"
+    );
+
     const queryString = query.toString();
-    return this.loader.load(queryString).then(this.normalizeDBResult);
+    return this.loader.load(queryString);
   }
 
   getCached(query, ttl) {

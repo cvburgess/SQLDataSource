@@ -2,9 +2,15 @@
 
 This package combines the power of [Knex] with the ease of use of [Apollo DataSources].
 
-**NOTE: THIS PACKAGE HAS OFFICIAL SUPPORT FOR POSTGRESQL AND SQLITE ONLY**
+## BREAKING CHANGE IN v0.2.0
 
-Other DBs will work, but they will return the default response from `knex.raw()` which may or may not be what you are expecting. I am working on support for other DBs, but if you want to open a PR, that helps!
+Batching of queries is hacked together with `knex.raw()` - while this is not ideal, due to the way Knex works, I have not found a more consistent way to do this.
+
+As such, when you use `getBatched` or `getBatchedAndCached` the result will not be the pretty, normalized output you may expect from Knex, it will be the raw output from your DB driver of choice as if you had run the query with `knex.raw()`.
+
+**If you find a way to implement caching without using `knex.raw()` please open a PR!**
+
+While I would love to spend more time investigating this, unfortunately my time is limited at the moment.
 
 ## Getting Started
 
@@ -33,7 +39,7 @@ class MyDatabase extends SQLDataSource {
   constructor() {
     super();
     // Add your instance of Knex to the DataSource
-    this.knex = knex;
+    this.db = knex;
   }
 
   getUsers() {
@@ -43,13 +49,13 @@ class MyDatabase extends SQLDataSource {
     // A promise without any caching or batching
     return query;
 
-    // Batch the query with DataLoader
+    // Batch the query with DataLoader - RETURNS A RAW RESPONSE
     return this.getBatched(query);
 
     // Cache the result for 1 minute
     return this.getCached(query, MINUTE);
 
-    // Batch the query and cache the result for 1 minute
+    // Batch the query and cache the result for 1 minute - RETURNS A RAW RESPONSE
     return this.getBatchedAndCached(query, MINUTE);
   }
 }
@@ -85,6 +91,8 @@ This method accepts one parameter:
 
 - `knexQuery`: <knexObject> A knex object that has not been then'd
 
+**NOTE: This method will return the raw response from your DB driver.**
+
 ### Caching ( getCached )
 
 If you were to make the same query over the course of multiple requests to your server you could also be making needless requests to your server - especially for expensive queries.
@@ -115,6 +123,8 @@ From the example in the usage section above:
 const query = this.db.select().from("users");
 return this.getBatchedAndCached(query, MINUTE);
 ```
+
+**NOTE: This method will return the raw response from your DB driver.**
 
 ### initialize
 
