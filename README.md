@@ -152,6 +152,11 @@ The context from your Apollo server is available as `this.context`.
 
 The instance of knex you reference in the constructor is made available as `this.db`.
 
+## hashing
+
+`this.hashing = true` makes cacheKey hash using crc32 to shorten and transform parts of the query
+that are not allowed in keys such as for **memcached** database
+
 ### Query methods
 
 The methods from SQLCache ( `getBatched`, `getCached`, and `getBatchedAndCached` ) are combined with the provided knex object and appended to `this`.

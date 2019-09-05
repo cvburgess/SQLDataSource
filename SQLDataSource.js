@@ -24,7 +24,9 @@ class SQLDataSource extends DataSource {
       knexTinyLogger(this.db); // Add a logging utility for debugging
     }
 
-    this.sqlCache = new SQLCache(config.cache, this.db, { crc: this.crc });
+    this.sqlCache = new SQLCache(config.cache, this.db, {
+      hashing: this.hashing
+    });
     this.getBatched = query => this.sqlCache.getBatched(query);
     this.getCached = (query, ttl) => this.sqlCache.getCached(query, ttl);
     this.getBatchedAndCached = (query, ttl) =>
