@@ -42,6 +42,7 @@
   "dependencies": {
     "apollo-datasource": "^0.3.1",
     "apollo-server-caching": "^0.3.1",
+    "crc": "3.8.0",
     "dataloader": "^1.4.0",
     "knex-tiny-logger": "^1.1.0"
   },

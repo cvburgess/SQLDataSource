@@ -1,9 +1,11 @@
 const { InMemoryLRUCache } = require("apollo-server-caching");
 const DataLoader = require("dataloader");
+const crc = require("crc");
 
 class SQLCache {
-  constructor(cache = new InMemoryLRUCache(), knex) {
+  constructor(cache = new InMemoryLRUCache(), knex, options = {}) {
     this.cache = cache;
+    this.crc = options.crc;
     this.loader = new DataLoader(rawQueries =>
       Promise.all(rawQueries.map(rawQuery => knex.raw(rawQuery)))
     );
@@ -11,6 +13,9 @@ class SQLCache {
 
   getCacheKeyForQuery(query) {
     const queryString = query.toString();
+    if (this.crc) {
+      return `sqlcache:${crc.crc32(queryString)}`;
+    }
     return `sqlcache:${queryString}`;
   }
 

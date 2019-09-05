@@ -66,6 +66,7 @@ describe("PostgreSQL", () => {
       constructor() {
         super();
         this.db = knex;
+        this.crc = true;
       }
 
       getFruit() {
