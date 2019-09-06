@@ -12,7 +12,7 @@ class SQLDataSource extends DataSource {
   initialize(config) {
     this.context = config.context;
     this.db = this.db || this.knex;
-
+    this.memoizedResults = new Map();
     if (!this.db) throw configError;
     if (this.knex) {
       // eslint-disable-next-line
@@ -27,10 +27,24 @@ class SQLDataSource extends DataSource {
     this.sqlCache = new SQLCache(config.cache, this.db, {
       hashing: this.hashing
     });
-    this.getBatched = query => this.sqlCache.getBatched(query);
     this.getCached = (query, ttl) => this.sqlCache.getCached(query, ttl);
-    this.getBatchedAndCached = (query, ttl) =>
-      this.sqlCache.getBatchedAndCached(query, ttl);
+  }
+  getBatchedAndCached(query, ttl) {
+    const cacheKey = this.sqlCache.getCacheKeyForQuery(query, ttl);
+    let promise = this.memoizedResults.get(cacheKey);
+    if (promise) return promise;
+    promise = this.sqlCache.getCached(query, ttl);
+    this.memoizedResults.set(cacheKey, promise);
+    return promise;
+  }
+
+  getBatched(query, ttl) {
+    const cacheKey = this.sqlCache.getCacheKeyForQuery(query, ttl);
+    let promise = this.memoizedResults.get(cacheKey);
+    if (promise) return promise;
+    promise = this.sqlCache.getResult(query, ttl);
+    this.memoizedResults.set(cacheKey, promise);
+    return promise;
   }
 }
 

@@ -1,6 +1,5 @@
 const Knex = require("knex");
 const SQLDataSource = require("./SQLDataSource");
-const mockConsole = require("jest-mock-console").default;
 
 const { TEST_PG_URL } = process.env;
 
@@ -31,32 +30,6 @@ describe("Configuration", () => {
     const initialize = () => testDB.initialize({});
 
     expect(initialize).toThrow(Error);
-  });
-
-  test("an warning to be logged if batching is used", () => {
-    class TestDB extends SQLDataSource {
-      constructor() {
-        super();
-        this.db = knex;
-      }
-
-      getFruit() {
-        const query = this.db
-          .select("*")
-          .from("fruit")
-          .where({ id: 1 });
-        return this.getBatchedAndCached(query, 1);
-      }
-    }
-
-    const testDB = new TestDB();
-    testDB.initialize({});
-
-    const restoreConsole = mockConsole();
-    return testDB.getFruit().then(() => {
-      expect(console.warn).toHaveBeenCalled(); // eslint-disable-line
-      restoreConsole();
-    });
   });
 });
 
