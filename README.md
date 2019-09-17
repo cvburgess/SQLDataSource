@@ -49,11 +49,13 @@ And use it in your Apollo server configuration:
 ```js
 // index.js
 
-const MyDatabase from "./MyDatabase";
+const MyDatabase = require("./MyDatabase");
 
 const knexConfig = {
   client: "pg",
-  connection: { /* CONNECTION INFO */ }
+  connection: {
+    /* CONNECTION INFO */
+  }
 };
 
 const db = new MyDatabase(knexConfig);
@@ -77,7 +79,9 @@ This method accepts one OPTIONAL parameter, `ttl` that is the number of seconds 
 
 The default value for cache is `5 seconds`.
 
-## SQLDataSource
+configuration, SQLDataSource falls back to an InMemoryLRUCache like the [RESTDataSource].
+
+## SQLDataSource Properties
 
 SQLDataSource is an ES6 Class that can be extended to make a new SQLDataSource and extends Apollo's base DataSource class under the hood.
 
@@ -85,9 +89,7 @@ SQLDataSource is an ES6 Class that can be extended to make a new SQLDataSource a
 
 Like all DataSources, SQLDataSource has an initialize method that Apollo will call when a new request is routed.
 
-The initialize call accepts a configuration object with a cache and context.
-
-If no cache is provided in your Apollo configuration, SQLDataSource falls back to an InMemoryLRUCache like the [RESTDataSource].
+If no cache is provided in your Apollo server
 
 ### context
 
@@ -97,9 +99,9 @@ The context from your Apollo server is available as `this.context`.
 
 The instance of knex you reference in the constructor is made available as `this.db`.
 
-### Debug mode
+## Debug mode
 
-To enable more enhanced logging via [knex-tiny-logger], set DEBUG=true in your environment variables.
+To enable more enhanced logging via [knex-tiny-logger], set `DEBUG` to a truthy value in your environment variables.
 
 ## Contributing
 

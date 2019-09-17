@@ -31,7 +31,7 @@ class SQLDataSource extends DataSource {
     }
   }
 
-  cacheQuery(ttl = 60, query) {
+  cacheQuery(ttl = 5, query) {
     const cacheKey = query.toString();
 
     return this.cache.get(cacheKey).then(entry => {
