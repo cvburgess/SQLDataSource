@@ -1,5 +1,10 @@
 # Changelog
 
+## v1.0.0 - 09-17-2019
+
+- Switch to an extended knex method (.cache) vs the old wrapper fns
+- Remove batching support
+
 ## v0.2.0 - 08-07-2019
 
 - Fix issues with lexical scoping [#19]

@@ -1,4 +1,49 @@
-const SQLCache = require("./SQLCache");
-const SQLDataSource = require("./SQLDataSource");
+const { DataSource } = require("apollo-datasource");
+const { InMemoryLRUCache } = require("apollo-server-caching");
+const Knex = require("knex");
+const knexTinyLogger = require("knex-tiny-logger").default;
 
-module.exports = { SQLCache, SQLDataSource };
+const { DEBUG } = process.env;
+
+let hasLogger = false;
+
+class SQLDataSource extends DataSource {
+  constructor(knexConfig) {
+    super();
+
+    this.context;
+    this.cache;
+    this.db = Knex(knexConfig);
+
+    const _this = this;
+    Knex.QueryBuilder.extend("cache", function(ttl) {
+      return _this.cacheQuery(ttl, this);
+    });
+  }
+
+  initialize(config) {
+    this.context = config.context;
+    this.cache = config.cache || new InMemoryLRUCache();
+
+    if (DEBUG && !hasLogger) {
+      hasLogger = true; // Prevent duplicate loggers
+      knexTinyLogger(this.db); // Add a logging utility for debugging
+    }
+  }
+
+  cacheQuery(ttl = 5, query) {
+    const cacheKey = query.toString();
+
+    return this.cache.get(cacheKey).then(entry => {
+      if (entry) return Promise.resolve(entry);
+
+      return query.then(rows => {
+        if (rows) this.cache.set(cacheKey, rows, { ttl });
+
+        return Promise.resolve(rows);
+      });
+    });
+  }
+}
+
+module.exports = { SQLDataSource };
