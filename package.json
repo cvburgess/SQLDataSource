@@ -46,13 +46,13 @@
     "knex-tiny-logger": "^1.1.0"
   },
   "devDependencies": {
+    "dotenv": "^8.1.0",
     "eslint": "^6.4.0",
     "eslint-config-prettier": "^6.3.0",
     "eslint-plugin-node": "^10.0.0",
     "eslint-plugin-prettier": "^3.1.0",
     "husky": "^3.0.5",
     "jest": "^24.9.0",
-    "jest-mock-console": "^1.0.0",
     "lint-staged": "^9.2.5",
     "pg": "^7.12.1",
     "prettier": "1.18.2"

@@ -2,8 +2,7 @@
 // https://jestjs.io/docs/en/expect#toequalvalue
 
 const Knex = require("knex");
-const SQLDataSource = require("./SQLDataSource");
-const mockConsole = require("jest-mock-console").default;
+const { SQLDataSource } = require("./index");
 
 describe("jest", () => {
   test("is configured", () => expect(true).toBeTruthy());
@@ -27,8 +26,8 @@ describe("Caching", () => {
     }
 
     const testDB = new TestDB(knexConfig);
-    const initialize = () => testDB.initialize({});
+    testDB.initialize({});
 
-    expect(initialize).toThrow(Error);
+    expect(testDB.getFruit()).toThrow(Error);
   });
 });
