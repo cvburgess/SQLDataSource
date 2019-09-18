@@ -1,3 +1,4 @@
+const crypto = require("crypto");
 const { DataSource } = require("apollo-datasource");
 const { InMemoryLRUCache } = require("apollo-server-caching");
 const Knex = require("knex");
@@ -32,13 +33,16 @@ class SQLDataSource extends DataSource {
   }
 
   cacheQuery(ttl = 5, query) {
-    const cacheKey = query.toString();
+    const cacheKey = crypto
+      .createHash("sha1")
+      .update(query.toString())
+      .digest("base64");
 
     return this.cache.get(cacheKey).then(entry => {
-      if (entry) return Promise.resolve(entry);
+      if (entry) return Promise.resolve(JSON.parse(entry));
 
       return query.then(rows => {
-        if (rows) this.cache.set(cacheKey, rows, { ttl });
+        if (rows) this.cache.set(cacheKey, JSON.stringify(rows), { ttl });
 
         return Promise.resolve(rows);
       });
