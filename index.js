@@ -47,7 +47,7 @@ class SQLDataSource extends DataSource {
       this.memoizedResults.set(cacheKey, this.getResult(ttl, query, cacheKey));
       return promise;
     }
-    promise = this.cacheQuery(ttl, query);
+    promise = this.cacheQuery(ttl, query, cacheKey);
     this.memoizedResults.set(cacheKey, promise);
     return promise;
   }
