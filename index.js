@@ -29,6 +29,7 @@ class SQLDataSource extends DataSource {
   initialize({ context = {}, cache = new InMemoryLRUCache() } = {}) {
     this.context = context;
     this.cache = cache;
+    this.memoizedResults = new Map();
   }
 
   getCacheKey(ttl = "", query) {
