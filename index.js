@@ -6,20 +6,19 @@ const knexTinyLogger = require("knex-tiny-logger").default;
 
 const { DEBUG } = process.env;
 
-Knex.QueryBuilder.extend("load", function(ttl) {
-  return this.client.load(ttl, this);
+Knex.QueryBuilder.extend("cache", function(ttl) {
+  return this.client.cache(ttl, this);
 });
 
 class SQLDataSource extends DataSource {
   constructor(knexConfig) {
     super();
-    this.memoizedResults = new Map();
     this.context;
     this.cache;
     this.db = Knex(knexConfig);
     const _this = this;
-    this.db.client.load = (ttl, query) => {
-      return _this.load(ttl, query);
+    this.db.client.cache = (ttl, query) => {
+      return _this.cacheQuery(ttl, query);
     };
     if (DEBUG) {
       knexTinyLogger(this.db); // Add a logging utility for debugging
@@ -29,7 +28,6 @@ class SQLDataSource extends DataSource {
   initialize({ context = {}, cache = new InMemoryLRUCache() } = {}) {
     this.context = context;
     this.cache = cache;
-    this.memoizedResults = new Map();
   }
 
   getCacheKey(ttl = "", query) {
@@ -37,20 +35,6 @@ class SQLDataSource extends DataSource {
       .createHash("sha1")
       .update(`${query.toString()}_${ttl}`)
       .digest("base64");
-  }
-
-  load(ttl, query) {
-    const cacheKey = this.getCacheKey(ttl, query);
-    let promise = this.memoizedResults.get(cacheKey);
-    if (promise) return promise;
-    if (!ttl) {
-      promise = this.getResult(ttl, query, cacheKey);
-      this.memoizedResults.set(cacheKey, this.getResult(ttl, query, cacheKey));
-      return promise;
-    }
-    promise = this.cacheQuery(ttl, query, cacheKey);
-    this.memoizedResults.set(cacheKey, promise);
-    return promise;
   }
 
   getResult(ttl, query, cacheKey) {
@@ -61,7 +45,8 @@ class SQLDataSource extends DataSource {
     });
   }
 
-  cacheQuery(ttl, query, cacheKey) {
+  cacheQuery(ttl = 5, query) {
+    const cacheKey = this.getCacheKey(ttl, query);
     return this.cache.get(cacheKey).then(entry => {
       if (entry) return Promise.resolve(JSON.parse(entry));
       return this.getResult(ttl, query, cacheKey);
