@@ -17,9 +17,11 @@ class SQLDataSource extends DataSource {
     this.db = Knex(knexConfig);
 
     const _this = this;
-    Knex.QueryBuilder.extend("cache", function(ttl) {
-      return _this.cacheQuery(ttl, this);
-    });
+    if (!this.db.cache) {
+      Knex.QueryBuilder.extend("cache", function(ttl) {
+        return _this.cacheQuery(ttl, this);
+      });
+    }
   }
 
   initialize(config) {
