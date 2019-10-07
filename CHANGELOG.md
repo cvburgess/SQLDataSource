@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.0.2 - 10-07-2019
+
+- Fix issue with repeated constructor calls
+
 ## v1.0.1 - 09-18-2019
 
 - Fix issue with Redis keys and values
