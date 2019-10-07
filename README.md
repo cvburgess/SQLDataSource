@@ -89,7 +89,7 @@ SQLDataSource is an ES6 Class that can be extended to make a new SQLDataSource a
 
 Like all DataSources, SQLDataSource has an initialize method that Apollo will call when a new request is routed.
 
-If no cache is provided in your Apollo server
+If no cache is provided in your Apollo server configuration, SQLDataSource falls back to the same InMemoryLRUCache leveraged by [RESTDataSource].
 
 ### context
 
