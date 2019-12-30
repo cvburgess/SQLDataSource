@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.0 - 12-30-2019
+
+- Deprecate this.db in favor of this.knex
+
 ## v1.0.2 - 10-07-2019
 
 - Fix issue with repeated constructor calls

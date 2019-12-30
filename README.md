@@ -7,7 +7,7 @@ This package combines the power of [Knex] with the ease of use of [Apollo DataSo
 In v1.0.0 this lib has a new fluid interface that plays nicely with Knex and stays more true to the spirit of Apollo DataSources.
 
 ```js
-const query = this.db.select("*").from("fruit").where({ id: 1 }).cache();
+const query = this.knex.select("*").from("fruit").where({ id: 1 }).cache();
 
 query.then(data => /* ... */ );
 ```
@@ -33,7 +33,7 @@ const MINUTE = 60;
 
 class MyDatabase extends SQLDataSource {
   getFruits() {
-    return this.db
+    return this.knex
       .select("*")
       .from("fruit")
       .where({ id: 1 })
@@ -95,9 +95,9 @@ If no cache is provided in your Apollo server configuration, SQLDataSource falls
 
 The context from your Apollo server is available as `this.context`.
 
-### db
+### knex
 
-The instance of knex you reference in the constructor is made available as `this.db`.
+The knex instance is made available as `this.knex`.
 
 ## Debug mode
 
