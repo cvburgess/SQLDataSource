@@ -97,7 +97,7 @@ The context from your Apollo server is available as `this.context`.
 
 ### knex
 
-The knex instance is made available as `this.knex`.
+The knex instance is made available as `this.knex` or `this.db`.
 
 ## Debug mode
 
