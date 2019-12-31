@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.0 - 12-30-2019
+
+- Allow knex instance to be referenced by `this.knex` in addition to `this.db`
+
 ## v1.0.2 - 10-07-2019
 
 - Fix issue with repeated constructor calls

@@ -15,6 +15,7 @@ class SQLDataSource extends DataSource {
     this.context;
     this.cache;
     this.db = Knex(knexConfig);
+    this.knex = this.db;
 
     const _this = this;
     if (!this.db.cache) {
