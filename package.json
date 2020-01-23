@@ -42,7 +42,7 @@
   "dependencies": {
     "apollo-datasource": "^0.6.3",
     "apollo-server-caching": "^0.5.0",
-    "knex": "^0.19.4",
+    "knex": "^0.19.5",
     "knex-tiny-logger": "^1.1.0"
   },
   "devDependencies": {
