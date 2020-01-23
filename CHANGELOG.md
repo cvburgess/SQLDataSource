@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.1.1 - 01-23-2020
+
+- Knex update for security
+
 ## v1.1.0 - 12-30-2019
 
 - Allow knex instance to be referenced by `this.knex` in addition to `this.db`
