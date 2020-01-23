@@ -79,7 +79,7 @@ This method accepts one OPTIONAL parameter, `ttl` that is the number of seconds 
 
 The default value for cache is `5 seconds`.
 
-configuration, SQLDataSource falls back to an InMemoryLRUCache like the [RESTDataSource].
+Unless [configured](https://www.apollographql.com/docs/apollo-server/data/data-sources/#using-memcachedredis-as-a-cache-storage-backend), SQLDataSource uses an InMemoryLRUCache like the [RESTDataSource].
 
 ## SQLDataSource Properties
 
