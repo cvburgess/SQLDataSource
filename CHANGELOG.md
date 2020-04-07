@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.2.0 - 04-07-2020
+
+- Support specifying a knex instance instead of config object ( Thanks @theogravity! )
+
 ## v1.1.1 - 01-23-2020
 
 - Knex update for security
