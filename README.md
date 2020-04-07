@@ -58,6 +58,7 @@ const knexConfig = {
   }
 };
 
+// you can also pass a knex instance instead of a configuration object
 const db = new MyDatabase(knexConfig);
 
 const server = new ApolloServer({
