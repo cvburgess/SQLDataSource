@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.0 - 04-22-2020
+
+- knex-tiny-logger update ( requires node v10+ )
+
 ## v1.2.1 - 04-22-2020
 
 - Knex update ( v0.20.x )
