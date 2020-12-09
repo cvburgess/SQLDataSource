@@ -30,16 +30,16 @@ class MyTestDataSource extends SQLDataSource {
 new MyTestDataSource({
   connection: {
     port: 80,
-    host: "somethimg",
-  },
+    host: "somethimg"
+  }
 });
 
 new MyTestDataSource(
   Knex({
     connection: {
       port: 80,
-      host: "something",
-    },
+      host: "something"
+    }
   })
 );
 
