@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.3.1 - 12-11-2020
+
+- Various dependency security updates via dependabot
+
 ## v1.3.0 - 04-22-2020
 
 - knex-tiny-logger update ( requires node v10+ )
