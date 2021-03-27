@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.4.0 - 03-27-2021
+
+- Add Typescript types ( Thanks @freshollie )
+
 ## v1.3.1 - 12-11-2020
 
 - Various dependency security updates via dependabot
