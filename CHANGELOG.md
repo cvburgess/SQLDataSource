@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.4.1 - 04-09-2021
+
+- Support GraphQL versions >= v14
+
 ## v1.4.0 - 03-27-2021
 
 - Add Typescript types ( Thanks @freshollie )
