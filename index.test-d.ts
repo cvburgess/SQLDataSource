@@ -8,6 +8,10 @@ class MyTestDataSource extends SQLDataSource {
     expectType<Knex>(this.knex);
   }
 
+  public testDbExists() {
+    expectType<Knex>(this.db);
+  }
+
   public async testCacheFunctionPassesResult() {
     expectType<MyRow[]>(
       await this.knex<MyRow>("mytable")

@@ -9,5 +9,6 @@ declare module "knex" {
 
 export class SQLDataSource extends DataSource {
   protected knex: Knex;
+  protected db: Knex;
   constructor(config: Knex.Config | Knex);
 }
