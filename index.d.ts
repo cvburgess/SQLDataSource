@@ -7,7 +7,9 @@ declare module "knex" {
   }
 }
 
-export class SQLDataSource extends DataSource {
+export class SQLDataSource<TContext = any> extends DataSource<TContext> {
+  protected context: TContext;
   protected knex: Knex;
+  protected db: Knex;
   constructor(config: Knex.Config | Knex);
 }

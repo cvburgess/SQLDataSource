@@ -1,9 +1,9 @@
 {
   "name": "datasource-sql",
-  "version": "1.4.1",
+  "version": "1.5.0",
   "description": "SQL DataSource for Apollo GraphQL projects",
   "main": "index.js",
-  "typings": "index.d.ts",
+  "types": "index.d.ts",
   "scripts": {
     "lint": "prettier '**/*.js' && eslint '**/*.js'",
     "lint:fix": "prettier --write '**/*.{js,ts}' && eslint --fix '**/*.js'",

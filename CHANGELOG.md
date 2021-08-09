@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.5.0 - 08-09-2021
+
+- Add types for `this.db` and `this.context` ( Thanks @astorije )
+
 ## v1.4.1 - 04-09-2021
 
 - Support GraphQL versions >= v14
