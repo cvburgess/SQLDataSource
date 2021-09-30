@@ -44,7 +44,6 @@
   "dependencies": {
     "apollo-datasource": "^0.6.3",
     "apollo-server-caching": "^0.5.0",
-    "knex": "^0.21.0",
     "knex-tiny-logger": "^2.0.0"
   },
   "devDependencies": {
@@ -62,7 +61,8 @@
     "typescript": "^4.1.2"
   },
   "peerDependencies": {
-    "graphql": ">=14.0.2"
+    "graphql": ">=14.0.2",
+    "knex": ">=0.21.0"
   },
   "keywords": [
     "apollo",
