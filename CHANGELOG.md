@@ -1,5 +1,9 @@
 # Changelog
 
+## v1.6.0 - 10-04-2021
+
+- Migrate knex to a peerDependencies ( Thanks @roy-coder )
+
 ## v1.5.0 - 08-09-2021
 
 - Add types for `this.db` and `this.context` ( Thanks @astorije )
