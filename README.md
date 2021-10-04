@@ -104,6 +104,10 @@ The knex instance is made available as `this.knex` or `this.db`.
 
 To enable more enhanced logging via [knex-tiny-logger], set `DEBUG` to a truthy value in your environment variables.
 
+## NPM 7 note
+
+While peer dependencies are not installed by default for NPM 6, [v7 will create a tree which could have peerDependencies added correctly](https://github.com/npm/rfcs/blob/main/implemented/0025-install-peer-deps.md).
+
 ## Contributing
 
 All contributions are welcome!
