@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.0.0 - 03-15-2022
+
+- Update imports to match [Knex v0.95+](https://github.com/knex/knex/blob/master/UPGRADING.md#upgrading-to-version-0950) ( Thanks @grusite )
+
 ## v1.6.0 - 10-04-2021
 
 - Migrate knex to a peerDependencies ( Thanks @roy-coder )
