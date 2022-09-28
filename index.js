@@ -22,12 +22,18 @@ class SQLDataSource extends DataSource {
     }
 
     this.knex = this.db;
-
     const _this = this;
+    
+    const cachefn = function(ttl) {
+      return _this.cacheQuery(ttl, this);
+    };
+
     if (!this.db.cache) {
-      Knex.QueryBuilder.extend("cache", function(ttl) {
-        return _this.cacheQuery(ttl, this);
-      });
+      // Extend modifies Knex prototype to include cache method.
+      // Does not retroactively add cache to existing connection.
+      Knex.QueryBuilder.extend("cache", cachefn);
+      // Must be manually added to existing knex connection.
+      this.db.cache = cachefn;
     }
   }
 
