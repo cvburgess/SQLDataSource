@@ -1,5 +1,9 @@
 # Changelog
 
+## v2.1.0 - 04-24-2023
+
+- Resolve issue with .cache declaration (#84) Thanks @daniel-keller
+
 ## v2.0.1 - 03-15-2022
 
 - Update dependencies
