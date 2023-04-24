@@ -1,6 +1,6 @@
 {
   "name": "datasource-sql",
-  "version": "2.0.1",
+  "version": "2.1.0",
   "description": "SQL DataSource for Apollo GraphQL projects",
   "main": "index.js",
   "types": "index.d.ts",
